@@ -29,7 +29,25 @@ Metafrazo.configure do |config|
 end
 ```
 
-By default, Metafrazo assumes your base branch is `master`.
+```ruby
+# advanced
+
+Metafrazo.configure do |config|
+  config.usernames = ["@mikekavouras"]
+  config.token = "384759828923rji923j23"
+  config.repos = {
+    "username/reponame" => {
+      compare_branch: "develop",
+      path: "some/path"
+    },
+    "username/other_reponame" => {
+      path: "other/path/somewhere"
+    }
+  }
+end
+```
+
+By default, Metafrazo assumes your base branch (`compare_path`) is `master`.
 
 ## Development
 
