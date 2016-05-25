@@ -31,7 +31,7 @@ module Metafrazo
 
     def master_branch
       @master_branch ||= begin
-        (@repo && @repo[:compare_branch]) || "master"
+        (@repo && @repo[:base_branch]) || "master"
       end
     end
 

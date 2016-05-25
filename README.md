@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Configuration
 ```ruby
-# basic 
+# basic
 
 Metafrazo.configure do |config|
   config.usernames = ["@mikekavouras"] # who gets notified?
@@ -37,7 +37,7 @@ Metafrazo.configure do |config|
   config.token = "384759828923rji923j23"
   config.repos = {
     "username/reponame" => {
-      compare_branch: "develop",
+      base_branch: "develop",
       path: "some/path"
     },
     "username/other_reponame" => {
@@ -47,7 +47,7 @@ Metafrazo.configure do |config|
 end
 ```
 
-By default, Metafrazo assumes your base branch (`compare_path`) is `master`.
+By default, Metafrazo assumes your base branch (`base_branch`) is `master`.
 
 ## Usage
 ```ruby
