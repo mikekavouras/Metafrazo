@@ -4,11 +4,13 @@ module Metafrazo
 
     def initialize(git)
       @git = git
+      @root_dir = Dir.pwd
     end
 
     def generate
       init_git unless git_init?
       get_diff
+      Dir.chdir(@root_dir)
     end
 
     private
@@ -20,12 +22,10 @@ module Metafrazo
     end
 
     def init_git
-      tmp = Dir.pwd
       FileUtils.mkdir_p(local_repo_dir)
       Dir.chdir(local_repo_dir)
       `git init`
       `git remote add origin #{@git.remote_origin}`
-      Dir.chdir(tmp);
     end
 
     def git_init?
@@ -33,7 +33,7 @@ module Metafrazo
     end
 
     def local_repo_dir
-      "#{Dir.pwd}/git/#{@git.repo_name}"
+      "#{@root_dir}/git/#{@git.repo_name}"
     end
 
   end
