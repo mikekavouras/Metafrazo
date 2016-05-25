@@ -53,6 +53,7 @@ By default, Metafrazo assumes your base branch (`compare_path`) is `master`.
 ```ruby
 Metafrazo.run(payload) # payload = json from github webook
 ```
+returns `true` if there are changes to the specified paths
 
 ## Development
 
