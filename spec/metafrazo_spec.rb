@@ -5,7 +5,9 @@ describe Metafrazo do
     expect(Metafrazo::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it 'is configurable' do
+    Metafrazo.configure do |config|
+      config.usernames = ["@metafrazo"]
+    end
   end
 end

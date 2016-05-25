@@ -9,8 +9,9 @@ module Metafrazo
 
     def generate
       init_git unless git_init?
-      get_diff
+      diff = get_diff
       Dir.chdir(@root_dir)
+      diff
     end
 
     private
