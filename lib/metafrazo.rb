@@ -74,7 +74,7 @@ module Metafrazo
   def self.message(changes)
     messages = [
       "ci sono nuove stringhe que sono in disperato bisogno di traduzione",
-      "hay nuevas cadenas que están en desesperada necesidad de la traducción",
+      "hay nuevas cadenas que están en desesperada necesidad de una traducción",
       "Que há novas cordas estão em necessidade desesperada de tradução",
       "il y a des nouvelles chaînes Que sont dans le besoin désespéré de la traduction",
       "gibt es neue Saiten que sind in einer verzweifelten Notwendigkeit Übersetzung"
