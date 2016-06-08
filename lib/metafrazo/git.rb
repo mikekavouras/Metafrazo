@@ -29,17 +29,21 @@ module Metafrazo
       @pull_request["head"]["sha"]
     end
 
+    def pull_request_url
+      @pull_request["html_url"]
+    end
+
     def master_branch
       @master_branch ||= begin
         (@repo && @repo[:base_branch]) || "master"
       end
     end
 
-    private
-
     def issue_id
       @pull_request["number"]
     end
+
+    private
 
     def client
       @client ||= Octokit::Client.new(access_token: @token)

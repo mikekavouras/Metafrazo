@@ -1,5 +1,6 @@
 require_relative 'metafrazo/version'
 require_relative 'metafrazo/config'
+require_relative 'metafrazo/slack'
 require_relative 'metafrazo/git'
 require_relative 'metafrazo/git_diff_generator'
 
@@ -19,7 +20,12 @@ module Metafrazo
     changes = local_changes(diff, diff_paths(repo))
 
     unless changes.empty?
-      git.comment(message(changes))
+      if slack_enabled?
+        m = message(changes, git.pull_request_url, git.issue_id)
+        Slack.send_message(m, config.slack_webhook_url)
+      else
+        git.comment(message(changes))
+      end
       # git.add_label("bug")
     end
 
@@ -71,7 +77,7 @@ module Metafrazo
     config.repos[names.first]
   end
 
-  def self.message(changes)
+  def self.message(changes, url = nil, number = nil)
     messages = [
       "ci sono nuove stringhe que sono in disperato bisogno di traduzione",
       "hay nuevas cadenas que están en desesperada necesidad de una traducción",
@@ -82,6 +88,14 @@ module Metafrazo
 
     message = "#{config.usernames.join(' ')}: #{messages.sample} – "
     message += changes.map { |change| "`#{change}`" }.join(' ')
+    message += " <#{url}| ##{number}👉>" if url&& number
   end
+
+  private
+
+  def self.slack_enabled?
+    config.slack_webhook_url.present?
+  end
+
 
 end
