@@ -88,7 +88,7 @@ module Metafrazo
 
     message = "#{config.usernames.join(' ')}: #{messages.sample} – "
     message += changes.map { |change| "`#{change}`" }.join(' ')
-    message += " <#{url}| ##{number}👉>" if url&& number
+    message += " \n\n<#{url}| ##{number} - 👉> \n" if url&& number
   end
 
   private
